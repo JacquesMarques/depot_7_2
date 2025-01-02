@@ -77,7 +77,7 @@ class CartsController < ApplicationController
       redirect_to store_index_url, notice: "Invalid cart"
     end
 
-  def validate_cart
-    invalid_cart if params[:id].to_i != session[:cart_id] || session[:cart_id].nil?
-  end
+    def validate_cart
+      invalid_cart if params[:id].to_i != session[:cart_id] || session[:cart_id].nil?
+    end
 end

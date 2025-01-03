@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: %i[ show edit update destroy ]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  before_action :validate_cart, only: %i[ show ]
 
   # GET /carts or /carts.json
   def index
@@ -75,9 +74,5 @@ class CartsController < ApplicationController
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to store_index_url, notice: "Invalid cart"
-    end
-
-    def validate_cart
-      invalid_cart if params[:id].to_i != session[:cart_id] || session[:cart_id].nil?
     end
 end
